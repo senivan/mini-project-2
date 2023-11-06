@@ -1,5 +1,16 @@
 def replace_substring(substring:str, repl:str, filename:str, inplace:int) -> None:
-    pass
+    with open(filename, 'r+') as f:
+        lines = f.readlines()
+        result = []
+        for line in lines:
+            line = line.replace(substring, repl)
+            if inplace:
+                print(line, end='')
+            else:
+                result.append(line)
+        if not inplace:
+            f.seek(0)
+            f.writelines(result)
 
 if __name__ == "__main__":
     # import doctest
